@@ -53,7 +53,7 @@ print()
 outputList = []
 
 for word,count in wordMatrix.items():
-   if count >= minAcceptable:
+   if count >= minAcceptable and len(word)>1:
       outputList.append(word)
 
 def comparison(a,b):
