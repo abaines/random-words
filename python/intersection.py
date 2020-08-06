@@ -43,7 +43,7 @@ for dictPath in dictionaries:
 
 
 fileCount = len(dictionaries)
-minAcceptable = fileCount - 0
+minAcceptable = fileCount - 1
 
 print('minAcceptable',minAcceptable,'of',fileCount)
 
