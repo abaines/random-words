@@ -1,0 +1,4 @@
+
+# ignore txt files in the python folder
+python/*.txt
+
