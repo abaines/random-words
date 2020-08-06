@@ -19,18 +19,22 @@ wordMatrix = {}
 for dictPath in dictionaries:
    print(dictPath)
    privateMatrix = {}
-   with open(dictPath, 'r') as file:
+   with open(dictPath, 'r', encoding="utf8") as file:
+      c = 0
       for line in file:
-         word = line.strip()
-         print('   ',word)
-         privateMatrix[word] = True
+         word = line.strip().lower()
+         if word.isalpha():
+            privateMatrix[word] = True
+            if c % 1000 is 0:
+               print('   ',word)
+            c = 1 + c
 
+   print("processing private matrix")
    for word in privateMatrix:
       if word not in wordMatrix:
          wordMatrix[word] = 0
       wordMatrix[word] = 1 + wordMatrix[word]
 
-print(wordMatrix)
 
 fileCount = len(dictionaries)
 
