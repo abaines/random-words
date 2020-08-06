@@ -1,6 +1,7 @@
 # Alan Baines
 
 import os
+import functools
 
 cwd = os.getcwd()
 
@@ -54,6 +55,14 @@ outputList = []
 for word,count in wordMatrix.items():
    if count >= minAcceptable:
       outputList.append(word)
+
+def comparison(a,b):
+   if len(a) == len(b):
+      return 1 if a > b else -1
+   else:
+      return len(a) - len(b)
+
+outputList.sort(key=functools.cmp_to_key(comparison))
 
 with open('words.out', 'w') as output:
    for word in outputList:
