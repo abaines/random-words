@@ -2,3 +2,6 @@
 # ignore txt files in the python folder
 python/*.txt
 
+# ignore words output from the python folder
+python/words.out
+
