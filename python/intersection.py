@@ -26,14 +26,17 @@ for dictPath in dictionaries:
          if word.isalpha():
             privateMatrix[word] = True
             if c % 1000 is 0:
-               print('   ',word)
+               # print('   ',word)
+               pass
             c = 1 + c
 
-   print("processing private matrix")
+   print("processing private matrix", end = '')
    for word in privateMatrix:
       if word not in wordMatrix:
          wordMatrix[word] = 0
       wordMatrix[word] = 1 + wordMatrix[word]
+   print(" complete")
+
 
 
 fileCount = len(dictionaries)
@@ -42,7 +45,12 @@ fileCount = len(dictionaries)
 
 print()
 
+c = 0
+
 for word,count in wordMatrix.items():
    if count >= fileCount:
       print(word)
+      c = 1 + c
+
+print(c)
 
