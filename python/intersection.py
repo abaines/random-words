@@ -42,18 +42,22 @@ for dictPath in dictionaries:
 
 
 fileCount = len(dictionaries)
+minAcceptable = fileCount - 0
 
-# print(fileCount)
+print('minAcceptable',minAcceptable,'of',fileCount)
 
 print()
 
-c = 0
+
+outputList = []
+
+for word,count in wordMatrix.items():
+   if count >= minAcceptable:
+      outputList.append(word)
 
 with open('words.out', 'w') as output:
-   for word,count in wordMatrix.items():
-      if count >= fileCount:
-         print(word, file=output)
-         c = 1 + c
+   for word in outputList:
+      print(word, file=output)
 
-print(c)
+print(len(outputList))
 
