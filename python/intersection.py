@@ -5,6 +5,7 @@ import os
 cwd = os.getcwd()
 
 print("cwd",cwd)
+print()
 
 
 dictionaries = []
@@ -30,12 +31,13 @@ for dictPath in dictionaries:
                pass
             c = 1 + c
 
-   print("processing private matrix", end = '')
+   print("processing private matrix", len(privateMatrix), end = '')
    for word in privateMatrix:
       if word not in wordMatrix:
          wordMatrix[word] = 0
       wordMatrix[word] = 1 + wordMatrix[word]
    print(" complete")
+   print()
 
 
 
@@ -47,10 +49,11 @@ print()
 
 c = 0
 
-for word,count in wordMatrix.items():
-   if count >= fileCount:
-      print(word)
-      c = 1 + c
+with open('words.out', 'w') as output:
+   for word,count in wordMatrix.items():
+      if count >= fileCount:
+         print(word, file=output)
+         c = 1 + c
 
 print(c)
 
