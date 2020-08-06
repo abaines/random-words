@@ -18,13 +18,17 @@ wordMatrix = {}
 
 for dictPath in dictionaries:
    print(dictPath)
+   privateMatrix = {}
    with open(dictPath, 'r') as file:
       for line in file:
          word = line.strip()
          print('   ',word)
-         if word not in wordMatrix:
-            wordMatrix[word] = 0
-         wordMatrix[word] = 1 + wordMatrix[word]
+         privateMatrix[word] = True
+
+   for word in privateMatrix:
+      if word not in wordMatrix:
+         wordMatrix[word] = 0
+      wordMatrix[word] = 1 + wordMatrix[word]
 
 print(wordMatrix)
 
