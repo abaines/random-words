@@ -74,11 +74,13 @@ for word,count in wordMatrix.items():
 
 # yay math to figure out log base to get max graph bar length given on the largest count
 logbase = math.exp( math.log(maxSize) / graphSize )
-print(maxSize,' -> ',logbase)
+print(maxSize,' -> ',logbase,' & ',round_sig( maxSize/graphSize ))
 print()
 
 for size,count in sorted(sizeMatrix.items()):
-   length = math.log(count,logbase)
+   length1 = math.log(count,logbase)
+   length2 = count * graphSize / maxSize
+   length = 0.5*length1 + 0.5*length2
    print(
       str(size).rjust(2,' '), # not likely to have words with more than 99 characters
       str(count).rjust(5,' '), # not likely to have more than 99,999 words of any given size
