@@ -2,6 +2,7 @@
 
 import os
 import functools
+import math
 
 cwd = os.getcwd()
 
@@ -52,6 +53,8 @@ print()
 
 outputList = []
 sizeMatrix = {}
+maxSize = -1
+graphSize = 60 # how big the max graph bar should be
 
 for word,count in wordMatrix.items():
    size = len(word)
@@ -60,9 +63,20 @@ for word,count in wordMatrix.items():
       if size not in sizeMatrix:
          sizeMatrix[size] = 0
       sizeMatrix[size] = 1 + sizeMatrix[size]
+      maxSize = max(maxSize,sizeMatrix[size])
+
+# yay math to figure out log base to get max graph bar length given on the largest count
+logbase = math.exp( math.log(maxSize) / graphSize )
+print(maxSize,' -> ',logbase)
+print()
 
 for size,count in sorted(sizeMatrix.items()):
-   print(str(size).rjust(2,' '),str(count).rjust(5,' '))
+   length = math.log(count,logbase)
+   print(
+      str(size).rjust(2,' '), # not likely to have words with more than 99 characters
+      str(count).rjust(5,' '), # not likely to have more than 99,999 words of any given size
+      "■"*int(length) # mmmm repeating characters!
+      )
 print()
 
 
