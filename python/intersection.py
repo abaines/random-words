@@ -77,10 +77,14 @@ logbase = math.exp( math.log(maxSize) / graphSize )
 print(maxSize,' -> ',logbase,' & ',round_sig( maxSize/graphSize ))
 print()
 
+# 0 for linear scale
+# 1 for log scale
+hybridRatio = 0.5
+
 for size,count in sorted(sizeMatrix.items()):
-   length1 = math.log(count,logbase)
-   length2 = count * graphSize / maxSize
-   length = 0.5*length1 + 0.5*length2
+   lengthLog = math.log(count,logbase)
+   lengthLinear = count * graphSize / maxSize
+   length = (hybridRatio)*lengthLog + (1-hybridRatio)*lengthLinear
    print(
       str(size).rjust(2,' '), # not likely to have words with more than 99 characters
       str(count).rjust(5,' '), # not likely to have more than 99,999 words of any given size
