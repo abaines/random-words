@@ -50,6 +50,13 @@ print('minAcceptable',minAcceptable,'of',fileCount)
 
 print()
 
+def round_sig(number, digits=6):
+   import math
+   logsize = math.log10(abs(number))
+   dig = digits-logsize-1
+   # print('dig',dig,'logsize',logsize)
+   return round(number,math.ceil(dig))
+
 
 outputList = []
 sizeMatrix = {}
