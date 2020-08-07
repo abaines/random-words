@@ -51,10 +51,20 @@ print()
 
 
 outputList = []
+sizeMatrix = {}
 
 for word,count in wordMatrix.items():
-   if count >= minAcceptable and len(word)>1:
+   size = len(word)
+   if count >= minAcceptable and size>1:
       outputList.append(word)
+      if size not in sizeMatrix:
+         sizeMatrix[size] = 0
+      sizeMatrix[size] = 1 + sizeMatrix[size]
+
+for size,count in sorted(sizeMatrix.items()):
+   print(str(size).rjust(2,' '),str(count).rjust(5,' '))
+print()
+
 
 def comparison(a,b):
    if len(a) == len(b):
