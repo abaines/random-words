@@ -3,6 +3,7 @@
 import os
 import functools
 import math
+import sys
 
 cwd = os.getcwd()
 
@@ -44,7 +45,7 @@ for dictPath in dictionaries:
 
 
 fileCount = len(dictionaries)
-minAcceptable = fileCount - 1
+minAcceptable = fileCount - 0
 
 print('minAcceptable',minAcceptable,'of',fileCount)
 
@@ -101,9 +102,39 @@ def comparison(a,b):
 
 outputList.sort(key=functools.cmp_to_key(comparison))
 
-with open('words.out', 'w') as output:
-   for word in outputList:
-      print(word, file=output)
 
-print(len(outputList))
+# number of desired output words
+desiredWords = 1000
+
+# constants
+hash_info = sys.hash_info
+modulus = hash_info.modulus
+
+print(sys.hash_info)
+print()
+
+# calculated values
+desiredRatio = desiredWords / len(outputList)
+desiredHashRaw = 2*modulus*desiredRatio - modulus
+
+print(modulus,desiredRatio,desiredHashRaw)
+print()
+
+# select reducedList from outputList
+reducedList = []
+for word in outputList:
+   h = hash(word)
+   if h < desiredHashRaw:
+      reducedList.append(word)
+
+print(len(outputList), len(reducedList),len(reducedList) /  len(outputList))
+print()
+
+# write 'words.out' to disk
+with open('words.out', 'w') as output:
+   for word in reducedList:
+      print(word, file=output)
+print()
+
+print("EOF")
 
