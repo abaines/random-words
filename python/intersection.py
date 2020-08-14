@@ -104,28 +104,30 @@ outputList.sort(key=functools.cmp_to_key(comparison))
 
 
 # number of desired output words
-desiredWords = 1000
+desiredWords = 100
 
-# constants
-hash_info = sys.hash_info
-modulus = hash_info.modulus
-
-print(sys.hash_info)
-print()
-
-# calculated values
-desiredRatio = desiredWords / len(outputList)
-desiredHashRaw = 2*modulus*desiredRatio - modulus
-
-print(modulus,desiredRatio,desiredHashRaw)
-print()
-
-# select reducedList from outputList
-reducedList = []
+# make a map of all the words, keyed on their hash value
+hashWords = {}
 for word in outputList:
    h = hash(word)
-   if h < desiredHashRaw:
-      reducedList.append(word)
+   if h not in hashWords:
+      hashWords[h] = []
+   hashWords[h].append(word)
+
+# sort the hash words keys
+hashWordsKeys = sorted(hashWords)
+
+# select the first desired count of words
+reducedList = []
+def getReducedList():
+   for h in hashWordsKeys:
+      words = hashWords[h]
+      for word in words:
+         reducedList.append(word)
+         if len(reducedList)>=desiredWords:
+            return
+getReducedList()
+# this should give us the 1000 words with the smallest hashes
 
 print(len(outputList), len(reducedList),len(reducedList) /  len(outputList))
 print()
