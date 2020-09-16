@@ -5,3 +5,6 @@ python/*.txt
 # ignore words output from the python folder
 python/words.out
 
+# ignore NPM nodeJS modules
+server/node_modules/*
+
