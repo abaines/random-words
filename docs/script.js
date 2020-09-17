@@ -11,6 +11,18 @@ const wordsLoc = home + "/words.out"
 console.log("home", home)
 console.log("wordsLoc", wordsLoc)
 
+function shuffle(array) 
+{
+   for (var index = array.length - 1; index > 0; index--)
+   {
+      const rnd = Math.floor(Math.random() * (index + 1));
+
+      const swap = array[index];
+      array[index] = array[rnd];
+      array[rnd] = swap;
+   }
+}
+
 fetch(wordsLoc)
    .then(
       response =>
@@ -20,10 +32,11 @@ fetch(wordsLoc)
          response.text().then(function (text)
          {
             const words = text.trim().split(/\s+/);
+            shuffle(words);
             console.log(words);
 
             const magicDiv = document.getElementById("all-the-magic");
-            const node = document.createTextNode(text);
+            const node = document.createTextNode(words.join(' '));
             magicDiv.appendChild(node);
 
             document.body.style.backgroundColor = "orange";
