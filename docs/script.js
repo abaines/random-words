@@ -13,10 +13,12 @@ console.log("wordsLoc", wordsLoc)
 
 fetch(wordsLoc)
    .then(
-      response => {
+      response =>
+      {
          console.log(response.status, response.statusText, response.url);
 
-         response.text().then(function (text) {
+         response.text().then(function (text)
+         {
             const words = text.trim().split(/\s+/);
             console.log(words);
 
@@ -27,7 +29,8 @@ fetch(wordsLoc)
             document.body.style.backgroundColor = "orange";
          })
       })
-   .catch(error => {
+   .catch(error =>
+   {
       console.log(error);
    })
 
