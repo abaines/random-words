@@ -104,7 +104,7 @@ outputList.sort(key=functools.cmp_to_key(comparison))
 
 
 # number of desired output words
-desiredWords = 100
+desiredWords = 10000
 
 # make a map of all the words, keyed on their hash value
 hashWords = {}
