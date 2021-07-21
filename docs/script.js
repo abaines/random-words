@@ -29,6 +29,21 @@ function capitalize(element,index,array)
    array[index] = word;
 }
 
+function randomDigit()
+{
+   return Math.floor(Math.random()*10);
+}
+
+var d = {}
+
+for (var i = 0 ; i < 10000000 ; i++)
+{
+   var rd = randomDigit();
+   d[rd] = ( d[rd] ?? 1 ) + 1
+}
+
+console.log(d);
+
 fetch(wordsLoc)
    .then(
       response =>
