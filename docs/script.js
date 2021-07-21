@@ -26,7 +26,7 @@ function shuffle(array)
 function capitalize(element,index,array)
 {
    const word = element.charAt(0).toUpperCase() + element.slice(1);
-   array[index] = word;
+   array[index] = word+randomDigit();
 }
 
 function randomDigit()
