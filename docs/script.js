@@ -23,6 +23,12 @@ function shuffle(array)
    }
 }
 
+function capitalize(element,index,array)
+{
+   const word = element.charAt(0).toUpperCase() + element.slice(1);
+   array[index] = word;
+}
+
 fetch(wordsLoc)
    .then(
       response =>
@@ -33,6 +39,7 @@ fetch(wordsLoc)
          {
             const words = text.trim().split(/\s+/);
             shuffle(words);
+            words.forEach(capitalize);
             console.log(words);
 
             const magicDiv = document.getElementById("all-the-magic");
