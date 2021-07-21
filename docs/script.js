@@ -11,7 +11,7 @@ const wordsLoc = home + "/words.out"
 console.log("home", home)
 console.log("wordsLoc", wordsLoc)
 
-function shuffle(array) 
+function shuffle(array)
 {
    for (var index = array.length - 1; index > 0; index--)
    {
