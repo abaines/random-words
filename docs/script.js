@@ -4,6 +4,9 @@
 
 document.body.style.backgroundColor = "red";
 
+const addNumber = false;
+const pascal = false;
+
 const index = window.location.href
 const home = index.substr(0, index.lastIndexOf("/"))
 const wordsLoc = home + "/words.out"
@@ -23,10 +26,21 @@ function shuffle(array)
    }
 }
 
+
+function transformWord(word)
+{
+   const firstRawCharacter = word.charAt(0);
+   const firstCharacter = pascal ? firstRawCharacter.toUpperCase() : firstCharacter;
+   const restOfWord = word.slice(1);
+   const newWord = firstCharacter + restOfWord;
+   const digit = addNumber ? randomDigit() : "";
+   return newWord+digit;
+}
+
+
 function capitalize(element,index,array)
 {
-   const word = element.charAt(0).toUpperCase() + element.slice(1);
-   array[index] = word+randomDigit();
+   array[index] = transformWord(element);
 }
 
 function randomDigit()
