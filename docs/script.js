@@ -30,7 +30,7 @@ function shuffle(array)
 function transformWord(word)
 {
    const firstRawCharacter = word.charAt(0);
-   const firstCharacter = pascal ? firstRawCharacter.toUpperCase() : firstCharacter;
+   const firstCharacter = pascal ? firstRawCharacter.toUpperCase() : firstRawCharacter;
    const restOfWord = word.slice(1);
    const newWord = firstCharacter + restOfWord;
    const digit = addNumber ? randomDigit() : "";
